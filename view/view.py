@@ -25,8 +25,7 @@ class View(QMainWindow):
         self.grip.setStyleSheet('background: transparent')
         
         self.splashscreen = Splashscreen(self)
-        
-        
+ 
         
     
     def toggleMenu(self,status):
@@ -111,14 +110,3 @@ class View(QMainWindow):
         elif button.objectName() == 'btn_new' : self.ui.stackedWidget.slidetowidget(2)
         else:
             pass
-    
-
-           
-         
-         
-    
-            
-  
-
-        
-   
