@@ -29,6 +29,7 @@ class View(QMainWindow):
         
     
     def toggleMenu(self,status):
+        
         if self.sender().objectName() == 'ToggleButton':
             layout = self.ui.LeftMenuFrame
             maxExtend = 160
@@ -63,8 +64,7 @@ class View(QMainWindow):
         
         
     ###### Event func ##### 
-    def mousePressEvent(self,event):
-        self.dragPos = event.globalPos()
+  
 
         
     def maximize_windowsize(self):
@@ -82,14 +82,11 @@ class View(QMainWindow):
             self.ui.maximizeButton.setToolTip("Maximize")
             self.ui.maximizeButton.setIcon(QIcon(u":/icons/icons/icon_maximize.png"))
             self.ui.resizeicon.show()
-        
+    
+    def mousePressEvent(self,event):
+        self.dragPos = event.globalPos()
             
-    def moveWindow(self,event):
-        if self.isMaximized(): self.maximize_restore()
-        if event.buttons() == Qt.LeftButton:
-            self.move(self.pos() + event.globalPos() - self.dragPos)
-            self.dragPos = event.globalPos()
-            event.accept()
+  
             
     
         
