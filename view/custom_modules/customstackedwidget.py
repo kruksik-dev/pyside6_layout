@@ -7,7 +7,7 @@ class SlidingStackedWidget(QStackedWidget):
         super(SlidingStackedWidget, self).__init__(parent)
 
         self.m_direction = QtCore.Qt.Horizontal
-        self.m_speed = 750
+        self.m_speed = 500
         self.m_animationtype = QtCore.QEasingCurve.InOutQuad
         self.m_now = 0
         self.m_next = 0
