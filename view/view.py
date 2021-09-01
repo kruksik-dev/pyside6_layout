@@ -1,6 +1,6 @@
 
 from view.ui_main import Ui_MainWindow
-from PySide6.QtWidgets import QMainWindow, QGraphicsDropShadowEffect, QSizeGrip
+from PySide6.QtWidgets import QMainWindow, QGraphicsDropShadowEffect, QPushButton, QSizeGrip
 from PySide6.QtCore import QPropertyAnimation, QEasingCurve, Qt
 from PySide6.QtGui import QColor, QIcon
 from view.custom_modules import SlidingStackedWidget, Splashscreen
@@ -90,7 +90,28 @@ class View(QMainWindow):
         self.ui.stackedWidget.addWidget(self.ui.title_page)
 
         self.ui.stackedWidget.setCurrentWidget(self.ui.home_page)
-
+        
+    def change_clicked_button_layout(self,buttonstyle):
+        new_layout = buttonstyle + self.model.pressedbuttonstyle
+        return new_layout
+    
+    def rechange_clicked_button_layout(self,buttonstyle):
+        relayout = buttonstyle.replace(self.model.pressedbuttonstyle, "")
+        return relayout
+    
+    def select_clicked_style(self, button):
+        for b in self.ui.buttonsframe.findChildren(QPushButton):
+            if b.objectName() == button.objectName():
+                b.setStyleSheet(self.change_clicked_button_layout(b.styleSheet()))
+    
+    def reset_clicked_style(self, button):
+        for b in self.ui.buttonsframe.findChildren(QPushButton):
+            if b.objectName() != button.objectName():
+                b.setStyleSheet(self.rechange_clicked_button_layout(b.styleSheet()))
+    
+    
     def changePage(self, button):
         slideto = self.model.check_which_slide(button)
+        self.reset_clicked_style(button)
+        self.select_clicked_style(button)
         self.ui.stackedWidget.slidetowidget(slideto)
